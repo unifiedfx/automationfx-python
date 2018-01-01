@@ -1,0 +1,7 @@
+{
+    "Apikey": "GET/CREATE AN APIKEY FROM THE AUTOMATIONFX WEB INTERFACE APPS PAGE",
+    "Host": "127.0.0.1",
+    "Port": 8181,
+    "Scheme": "http",
+    "UseCloudFX": false
+}
