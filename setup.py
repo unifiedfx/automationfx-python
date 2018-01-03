@@ -1,10 +1,10 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __version__ = '0.1.3'
 
 setup(
     name='automationfx',
-    packages=['automationfx'],
+    packages=find_packages(),
     version=__version__,
     description='AutomationFX SDK for Cisco Unified Communication Manager',
     long_description=(
