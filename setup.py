@@ -18,7 +18,7 @@ setup(
     url='https://github.com/unifiedfx/automationfx-python',
     download_url='https://github.com/unifiedfx/automationfx-python/archive/0.1.tar.gz',
     license='MIT',
-    install_requires=['requests','time'],
+    install_requires=['requests'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
