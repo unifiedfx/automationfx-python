@@ -10,7 +10,8 @@ class Settings:
     UseCloudFX = False
     def __init__(self):
         # import os.path
-        fn = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+        fn = os.getcwd()
+        # fn = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
         fn = os.path.join(fn, 'settings.json')
         # TODO: If 'settings.json' does not exist then create with default values and tell user to edit the file
         # Alternatively prompt for APIKey etc.
