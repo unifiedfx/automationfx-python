@@ -199,7 +199,7 @@ import automationfx
 p1 = findPhone(Phone.Description.contains('demo'))
 ```
 
-## Query Phones
+### Query Phones
 
 The AutomationFX module includes an [oData client](https://github.com/tuomur/python-odata) that exposes a query object to build an oData query with.
 The [query object](https://github.com/unifiedfx/automationfx-python/blob/master/automationfx/odata/query.py) exposes a 'filter' function that accepts filter statements to convert to the relevant oData request when applied.
@@ -218,7 +218,7 @@ In addition to the API actions the 'automationfx' module includes it's own Comma
 
 ### Setup
 
-Note: If you have not previously setup the connection to the system running AutomationFX you will be prompted for the Apikey and host details. This information is saved to a local 'settings.json' and will be used antomatically the next time the 'automationfx' cli is started from that same location. If you wish to change the settings you can either edit the 'settings.json' file directly or use the 'setup' cli command
+Note: If you have not previously setup the connection to the system running AutomationFX you will be prompted for the Apikey and host details. This information is saved to a local 'settings.json' and will be used automatically the next time the 'automationfx' cli is started from that same location. If you wish to change the settings you can either edit the 'settings.json' file directly or use the 'setup' cli command
 
 ```
 automationfx
@@ -250,6 +250,12 @@ Welcome to the AutomationFX cli. Type help or ? to list commands.
 AFX>
 ```
 
+*Note: On Windows the 'scripts' folder may not be included in the PATH, to call directly use:*
+
+```
+\Python27\Scripts\automationfx
+```
+
 ### Usage
 
 Get available commands:
@@ -272,7 +278,7 @@ Place a call from a source phone extension to any number "call 50005 10134"
 There are two ways to use actions that work against phones:
 
 1. From the root prompt 'AFX>' pass the source phone extension as the fist argument i.e. 'call 50005 10134' to call 10134 from the phone with extension 50005
-2. Set the context to the phone to perfom actions on and omit the fist argument using the 'cd' Choose Device command
+2. Set the context to the phone to perfom actions on and omit the fist argument, using the Choose Device command 'cd' to set the context
 
 Using the root prompt:
 
@@ -280,11 +286,12 @@ Using the root prompt:
 AFX> call 50005 10134
 ```
 
-Setting the phone context to a particular phone extension/DN using the 'cd' command (Choose Device)
+Using the context by setting the phone context to a particular extension/DN using the 'cd' command (Choose Device):
 
 ```
 AFX> cd 50005
 AFX/50005> call 10134
+Calling 10136 from SEP2834A282E799
 ```
 
 *Note: The prompt will update to indicate the current context by including the device extension/DN*
@@ -294,6 +301,13 @@ To change context to a different extension:
 ```
 AFX/50005> cd 10136
 AFX/10136>
+```
+
+To naviage back to the root context:
+
+```
+AFX/50005> cd /
+AFX>
 ```
 
 Place a call from 50005 to 10136:
