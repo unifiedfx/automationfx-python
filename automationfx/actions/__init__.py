@@ -1,5 +1,9 @@
 import time
 from ..api.client import Client
+from ..odata import ODataService
+from ..models.phones import Phone
+from ..odata.auth import APIKeyAuth
+from ..settings import Settings
 
 api = Client()
 
@@ -98,3 +102,13 @@ def sqlQuery(query):
 
 def sqlUpdate(update):
     return api.postString("axl/sql/update", update)
+
+def queryPhone():
+    settings = Settings()
+    Service = ODataService(settings.getUrl('oData'), reflect_entities=False, base=Phone, auth=APIKeyAuth(settings.Apikey))
+    return Service.query(Phone)
+
+def findPhone(param):
+    settings = Settings()
+    Service = ODataService(settings.getUrl('oData'), reflect_entities=False, base=Phone, auth=APIKeyAuth(settings.Apikey))
+    return queryPhone().filter(param).first()

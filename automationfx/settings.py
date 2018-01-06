@@ -9,15 +9,8 @@ class Settings:
     Port = 8181
     UseCloudFX = False
     def __init__(self):
-        # import os.path
-        fn = os.getcwd()
-        # fn = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-        fn = os.path.join(fn, 'settings.json')
-        # TODO: If 'settings.json' does not exist then create with default values and tell user to edit the file
-        # Alternatively prompt for APIKey etc.
-        # fn = os.path.join(os.path.dirname(__file__), 'settings.json')
-        if not os.path.isfile(fn):
-            with open(fn, 'w') as outfile:
+        if not os.path.isfile(self.filename()):
+            with open(self.filename(), 'w') as outfile:
                 json.dump({
                     'Apikey':self.Apikey,
                     'Scheme':self.Scheme,
@@ -26,9 +19,24 @@ class Settings:
                     'UseCloudFX':self.UseCloudFX
                     }, outfile, indent=4, sort_keys=True)
         else:
-            json_data=open(fn).read()
+            json_data=open(self.filename()).read()
             data = json.loads(json_data)
             self.__dict__.update(data)
+
+    def filename(self):
+        fn = os.getcwd()
+        fn = os.path.join(fn, 'settings.json')
+        return fn
+
+    def save(self):
+        with open(self.filename(), 'w') as outfile:
+            json.dump({
+                'Apikey':self.Apikey,
+                'Scheme':self.Scheme,
+                'Host':self.Host,
+                'Port':self.Port,
+                'UseCloudFX':self.UseCloudFX
+                }, outfile, indent=4, sort_keys=True)
 
     def getUrl(self, path):
         if self.UseCloudFX:

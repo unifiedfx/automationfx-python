@@ -29,13 +29,3 @@ __all__ =[
     'deleteResource',
     'sqlQuery',
     'sqlUpdate']
-
-settings = Settings()
-Service = ODataService(settings.getUrl('oData'), reflect_entities=False, base=Phone, auth=APIKeyAuth(settings.Apikey))
-
-def queryPhone():
-    return Service.query(Phone)
-
-def findPhone(param):
-    return queryPhone().filter(param).first()
-

@@ -31,7 +31,11 @@ class Client:
             'Content-Type': 'text/plain',
         }
         response = self.session.post(url, data=data, headers=headers, params=params)
-        return response.json()
+        try:
+            jdata = response.json() 
+        except ValueError, e:
+            return
+        return jdata
     
     def put(self, path, data, params=None):
         url = self.settings.getUrl(path)
@@ -41,6 +45,7 @@ class Client:
         data = json.dumps(data)
         response = self.session.put(url, data=data, headers=headers, params=params)
         return response.json()
+    
     def delete(self, path, params=None):
         url = self.settings.getUrl(path)
         response = self.session.delete(url, params=params)

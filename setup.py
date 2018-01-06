@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 setup(
     name='automationfx',
@@ -18,12 +18,17 @@ setup(
     url='https://github.com/unifiedfx/automationfx-python',
     download_url='https://github.com/unifiedfx/automationfx-python/archive/0.1.tar.gz',
     license='MIT',
-    install_requires=['requests'],
+    install_requires=['requests','python-dateutil'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7'
         ],
     keywords='Cisco Phone Automation',
+    entry_points={
+          'console_scripts': [
+              'automationfx = automationfx.__main__:main'
+          ]
+      },
     zip_safe=False
     )
