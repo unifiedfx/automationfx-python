@@ -1,4 +1,5 @@
 import cmd, sys, argparse
+import os.path
 from settings import Settings
 from actions import *
 
@@ -211,6 +212,20 @@ class AutomationFXShell(cmd.Cmd):
             return
         self.pwd = phone
         self.prompt = 'AFX/{0}>'.format(phone.DN)
+    
+    def do_run(self,arg):
+        'Run a python script "run test.py"'
+        filename = arg or "test"
+        if os.path.isfile(filename):
+            print("Running: {0}", format(filename))
+            execfile(filename)
+            return 
+        filename = filename+'.py'
+        if os.path.isfile(filename):
+            print("Running: {0}".format(filename))
+            execfile(filename)
+            return
+        print("could not find file to run: {0}".format(filename))            
 
 if __name__ == "__main__":
     main()
