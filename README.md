@@ -4,8 +4,10 @@ A Python library for the AutomationFX REST API. AutomationFX is an integration p
 
 * Automate/Script [PhoneView](https://www.unifiedfx.com/products/unifiedfx-phoneview) Macros
 * CTI Screen Pop-up
-* Mass notificaiton/messaging to Cisco IP Phones ([Sample](https://github.com/unifiedfx/automationfx-python/blob/master/example_sendmessage.py))
+* Mass notification/messaging to Cisco IP Phones ([Example](https://github.com/unifiedfx/automationfx-python/blob/master/example_sendmessage.py))
 * CUCM Provisioning
+	* SQLQuery ([Example](https://github.com/unifiedfx/automationfx-python/blob/master/example_sqlquery.py))
+	* Update Line ([Example](https://github.com/unifiedfx/automationfx-python/blob/master/example_callforward.py))
 * Cloud enable Cisco Unified Communications Manager (CUCM) API's
 * Automated Testing
     * [Example 1](https://github.com/unifiedfx/automationfx-python/blob/master/example_testcall1.py) - Call SimpleCallTest from [Example Tests](https://github.com/unifiedfx/automationfx-python/blob/master/example_tests.py)
@@ -73,7 +75,7 @@ Note: To obtain an Apikey open the Apps page on the AutomationFX admin interface
 # Usage
 
 ## API
-Within a python script/file simply import the automationfx module 'import automationfx', from there you can call any of the [actions](https://github.com/unifiedfx/automationfx-python/blob/master/automationfx/actions/__init__.py) availble from the AutomationFX API:
+Within a python script/file simply import the automationfx module 'import automationfx', from there you can call any of the [actions](https://github.com/unifiedfx/automationfx-python/blob/master/automationfx/actions/__init__.py) available from the AutomationFX API:
 
 * queryPhone
 * findPhone
@@ -171,7 +173,7 @@ drop(p1)
 
 A number of the API actions require a phone object to perfom the relevant action on. The API includes the 'queryPhone' and 'findPhone' functions to provide a simple and flexible way to obtain the relevant phone(s) to perform actions against.
 
-The AutomationFX REST API includes an [oData](http://www.odata.org/getting-started/basic-tutorial/) endpoint for all the phones availble on the system. This provides a flexible way to query for phones using a number of [Phone](https://github.com/unifiedfx/automationfx-python/blob/master/automationfx/models/phones.py) object properties such as DN, Description, DevicePool, IPAddress, User, Model, Location, Region
+The AutomationFX REST API includes an [oData](http://www.odata.org/getting-started/basic-tutorial/) endpoint for all the phones available on the system. This provides a flexible way to query for phones using a number of [Phone](https://github.com/unifiedfx/automationfx-python/blob/master/automationfx/models/phones.py) object properties such as DN, Description, DevicePool, IPAddress, User, Model, Location, Region
 
 * The 'findPhone' function returns a single Phone instance, if there are multiple matches it will be the first found
 * The 'queryPhone' function returns an array of Phone instances
@@ -210,11 +212,11 @@ List the first 10 registered phones ordered by Primary Extension/DN
 import automationfx
 registered = queryPhone().filter(Phone.Status == 'Registered').order_by(Phone.DN.asc()).limit(10).all()
 ```
-*Note: The 'all()' function call on the end triggers the filter statement to be executed and return an array, by omitting the 'all()' function call an enumberable will be returned. Only when iterating through the enumberable will the call to the oData endpoint by made.*
+*Note: The 'all()' function call on the end triggers the filter statement to be executed and return an array, by omitting the 'all()' function call an enumerable will be returned. Only when iterating through the enumerable will the call to the oData endpoint by made.*
 
 ## CLI
 
-In addition to the API actions the 'automationfx' module includes it's own Command Line Interface (CLI) that exposes a number of the actions above in a simple interactive interface that is perfect for testing/exploring what the actions do:
+In addition to the API actions the 'automationfx' module includes its own Command Line Interface (CLI) that exposes a number of the actions above in a simple interactive interface that is perfect for testing/exploring what the actions do:
 
 ### Setup
 
@@ -277,8 +279,8 @@ Place a call from a source phone extension to any number "call 50005 10134"
 
 There are two ways to use actions that work against phones:
 
-1. From the root prompt 'AFX>' pass the source phone extension as the fist argument i.e. 'call 50005 10134' to call 10134 from the phone with extension 50005
-2. Set the context to the phone to perfom actions on and omit the fist argument, using the Choose Device command 'cd' to set the context
+1. From the root prompt 'AFX>' pass the source phone extension as the first argument i.e. 'call 50005 10134' to call 10134 from the phone with extension 50005
+2. Set the context to the phone to perfom actions on and omit the first argument, using the Choose Device command 'cd' to set the context
 
 Using the root prompt:
 
