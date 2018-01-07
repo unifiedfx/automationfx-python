@@ -88,8 +88,13 @@ def sendMessage(message, destination):
 def sendRawMessage(message, source):
     return getClient().post("messages/send", data=message, params={'filter':source})
 
-def listResource(resource):
-    return getClient().get("axl/{0}".format(resource), params={'detailed':'true'})
+def listResource(resource, search=None, fields=None):
+    params = {'detailed':'true'}
+    if search is not None:
+        params.update({'search':search})
+    if fields is not None:
+        params.update({'fields':fields})
+    return getClient().get("axl/{0}".format(resource), params=params)
 
 def getResource(resource, id):
     return getClient().get("axl/{0}/{1}".format(resource,id))
