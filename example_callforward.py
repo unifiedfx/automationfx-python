@@ -22,7 +22,7 @@ if len(lines) > 0:
     # Print the Call Forward All Destiantion
     cfaDestination = line['callForwardAll']['destination']
     print("Line {0} Call Forward All: {1}".format(line['pattern'], ("Not set" if cfaDestination is None else cfaDestination)))
-    # Update the lines 'callForwardAll/destination', simple update to an empty string '' to clear CallForwardAll
+    # Update the lines 'callForwardAll/destination', simply update to an empty string '' to clear CallForwardAll
     newCfaDestination = '4000'
-    line = updateResource('Line', lines[0]['uuid'], {'callForwardAll':{'destination':newCfaDestination}})
+    line = updateResource('Line', getLineId(lines[0]), {'callForwardAll':{'destination':newCfaDestination}})
 
