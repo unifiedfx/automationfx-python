@@ -1,6 +1,17 @@
+import sys
 from setuptools import setup, find_packages
 
 __version__ = '0.1.4'
+
+requires = [
+    'requests>=2.0',
+    'python-dateutil',
+    'odata',
+]
+
+# support for enums from pypi when on older python
+if sys.version_info < (3, 4):
+    requires.append('enum34')
 
 setup(
     name='automationfx',
@@ -18,7 +29,7 @@ setup(
     url='https://github.com/unifiedfx/automationfx-python',
     download_url='https://github.com/unifiedfx/automationfx-python/archive/0.1.tar.gz',
     license='MIT',
-    install_requires=['requests','python-dateutil','Enum'],
+    install_requires=requires,
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
