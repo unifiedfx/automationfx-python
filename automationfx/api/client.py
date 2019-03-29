@@ -33,7 +33,7 @@ class Client:
         response = self.session.post(url, data=data, headers=headers, params=params)
         try:
             jdata = response.json() 
-        except ValueError, e:
+        except (ValueError, e):
             return
         return jdata
     

@@ -1,6 +1,6 @@
-from ..odata.entity import EntityBase
-from ..odata.entity import declarative_base
-from ..odata.property import IntegerProperty, StringProperty, DatetimeProperty
+from odata.entity import EntityBase
+from odata.entity import declarative_base
+from odata.property import IntegerProperty, StringProperty, DatetimeProperty
 
 
 class Phone(declarative_base()):

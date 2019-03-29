@@ -1,6 +1,6 @@
-from .odata import ODataService
+from odata import ODataService
 from .models.phones import Phone
-from .odata.auth import APIKeyAuth
+from .auth import APIKeyAuth
 from .settings import Settings
 from .actions import *
 

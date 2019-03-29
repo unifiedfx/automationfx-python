@@ -1,7 +1,7 @@
 import cmd, sys, argparse
 import os.path
-from settings import Settings
-from actions import *
+from .settings import Settings
+from .actions import *
 
 def main():
     AutomationFXShell().cmdloop()
@@ -29,7 +29,7 @@ def query_yes_no(question, default="yes"):
 
     while True:
         sys.stdout.write(question + prompt)
-        choice = raw_input().lower()
+        choice = input().lower()
         if default is not None and choice == '':
             return valid[default]
         elif choice in valid:
@@ -53,26 +53,26 @@ class AutomationFXShell(cmd.Cmd):
     def do_setup(self,arg):
         'Setup the connection to AutomationFX'
         if query_yes_no("Set Apikey?"):
-            self.settings.Apikey = raw_input("Apikey: ")
+            self.settings.Apikey = input("Apikey: ")
         self.settings.UseCloudFX = query_yes_no("Use CloudFX?")
         if not self.settings.UseCloudFX and query_yes_no("Change AutomationFX Host ({0})?".format(self.settings.Host)):
-            self.settings.Host = raw_input("AutomationFX Host: ")
+            self.settings.Host = input("AutomationFX Host: ")
         if not self.settings.UseCloudFX and query_yes_no("Change AutomationFX Port ({0})?".format(self.settings.Port)):
-            self.settings.Port = int(raw_input("AutomationFX Port: "))
+            self.settings.Port = int(input("AutomationFX Port: "))
         if not self.settings.UseCloudFX and query_yes_no("Change AutomationFX Scheme ({0})?".format(self.settings.Scheme)):
-            scheme = raw_input("AutomationFX Scheme: ")
+            scheme = input("AutomationFX Scheme: ")
             scheme = scheme.lower()
             if scheme != "http" and scheme != "https":
                 print("Invalid scheme (only 'http' and 'https' allowed)")
             else:
                 self.settings.Scheme = scheme
         print("AutomationFX Setup:")
-        print("\tApikey: {0}".format(self.settings.Apikey))
-        print("\tUse CloudFX: {0}".format(self.settings.UseCloudFX))
+        print(("\tApikey: {0}".format(self.settings.Apikey)))
+        print(("\tUse CloudFX: {0}".format(self.settings.UseCloudFX)))
         if not self.settings.UseCloudFX:
-            print("\tHost: {0}".format(self.settings.Host))
-            print("\tPort: {0}".format(self.settings.Port))
-            print("\tScheme: {0}".format(self.settings.Scheme))
+            print(("\tHost: {0}".format(self.settings.Host)))
+            print(("\tPort: {0}".format(self.settings.Port)))
+            print(("\tScheme: {0}".format(self.settings.Scheme)))
         if query_yes_no("Save Settings?"):
             self.settings.save()
 
@@ -100,11 +100,11 @@ class AutomationFXShell(cmd.Cmd):
             return
         sourceNum = self.intTryParse(parts[0])
         if not sourceNum[1]:
-            print("Argument ({0}) is not a number".format(parts[0]))
+            print(("Argument ({0}) is not a number".format(parts[0])))
             return
         phone = findPhone(Phone.DN == parts[0])
         if not phone:
-            print("Extension/DN '{0}' not found".format(parts[0]))
+            print(("Extension/DN '{0}' not found".format(parts[0])))
             return
         return phone, parts
 
@@ -182,7 +182,7 @@ class AutomationFXShell(cmd.Cmd):
             return
         digits = self.intTryParse(data[1][1])
         if not digits[1]:
-            print("Argument ({0}) is not a number".format(data[1][1]))
+            print(("Argument ({0}) is not a number".format(data[1][1])))
             return
         sendDigits(data[0], data[1][1])
 
@@ -208,7 +208,7 @@ class AutomationFXShell(cmd.Cmd):
             return
         phone = findPhone(Phone.DN == arg)
         if not phone:
-            print("Extension/DN '{0}' not found".format(arg))
+            print(("Extension/DN '{0}' not found".format(arg)))
             return
         self.pwd = phone
         self.prompt = 'AFX/{0}>'.format(phone.DN)
@@ -217,15 +217,15 @@ class AutomationFXShell(cmd.Cmd):
         'Run a python script "run test.py"'
         filename = arg or "test"
         if os.path.isfile(filename):
-            print("Running: {0}", format(filename))
-            execfile(filename)
+            print(("Running: {0}", format(filename)))
+            exec(compile(open(filename).read(), filename, 'exec'))
             return 
         filename = filename+'.py'
         if os.path.isfile(filename):
-            print("Running: {0}".format(filename))
-            execfile(filename)
+            print(("Running: {0}".format(filename)))
+            exec(compile(open(filename).read(), filename, 'exec'))
             return
-        print("could not find file to run: {0}".format(filename))            
+        print(("could not find file to run: {0}".format(filename)))            
 
 if __name__ == "__main__":
     main()
