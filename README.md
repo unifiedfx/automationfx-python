@@ -17,7 +17,7 @@ For an overview of AutomationFX and additional resources please visit [Awesome-A
 
 # Requirements
 
-* Python 2.7 (or greater) [Download](https://www.python.org/downloads/)
+* Python 3.6 (or greater) [Download](https://www.python.org/downloads/)
 * AutomationFX - included as part of the PhoneFX feature in [PhoneView Lab Edition](https://www.unifiedfx.com/unifiedfx-free-software/phoneview-free-lab-edition)  ([Download PhoneView 6.1+](https://download.unifiedfx.com/PhoneView/alpha))
 * Cisco Unified Communications Manager (CUCM) 8.0 (or above)
 
@@ -34,7 +34,7 @@ pip install automationfx
 *Note: On Windows the 'pip' command may not be included in the PATH, to call directly use:*
 
 ```
-\Python27\Scripts\pip install automationfx
+C:\Users\User Name\AppData\Local\Programs\Python\Python36-32(depending on python version)\Scripts pip install automationfx
 ```
 
 # Setup
@@ -48,7 +48,7 @@ automationfx
 *Note: On Windows the 'scripts' folder may not be included in the PATH, to call directly use:*
 
 ```
-\Python27\Scripts\automationfx
+C:\Users\User Name\AppData\Local\Programs\Python\Python36-32(depending on python version)\Scripts pip install automationfxScripts\automationfx
 ```
 
 ```
