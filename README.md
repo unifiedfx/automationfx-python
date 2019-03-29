@@ -48,7 +48,7 @@ automationfx
 *Note: On Windows the 'scripts' folder may not be included in the PATH, to call directly use:*
 
 ```
-C:\Users\User Name\AppData\Local\Programs\Python\Python36-32(depending on python version)\Scripts pip install automationfxScripts\automationfx
+C:\Users\User Name\AppData\Local\Programs\Python\Python36-32(depending on python version)\Scripts\automationfx
 ```
 
 ```
