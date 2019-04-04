@@ -7,6 +7,7 @@ requires = [
     'requests>=2.0',
     'python-dateutil',
 	'tctc-odata',
+	'six',
 ]
 
 # support for enums from pypi when on older python
