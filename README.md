@@ -34,8 +34,9 @@ pip install automationfx
 *Note: On Windows the 'pip' command may not be included in the PATH, to call directly use:*
 
 ```
-\Python27\Scripts\pip install automationfx
+C:\Python27\Scripts pip install automationfx
 ```
+*Note: This path can be different depending on the Python version. 
 
 # Setup
 
