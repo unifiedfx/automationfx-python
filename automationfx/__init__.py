@@ -22,6 +22,7 @@ __all__ =[
     'macro',
     'sendMessage',
     'sendRawMessage',
+    'migrate',
     'listResource',
     'getResource',
     'addResource',
