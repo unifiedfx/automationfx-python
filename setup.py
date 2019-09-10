@@ -1,7 +1,7 @@
 import sys
 from setuptools import setup, find_packages
 
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 
 requires = [
     'requests>=2.0',
@@ -10,7 +10,8 @@ requires = [
 	'six',
     'pystache',
     'pyqrcode',
-    'pypng'
+    'pypng',
+    'colorama'
 ]
 
 # support for enums from pypi when on older python

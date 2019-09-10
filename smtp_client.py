@@ -55,7 +55,7 @@ class SmtpClient:
       # Add HTML/plain-text parts to MIMEMultipart message and the email client will try to render the last part first
       message = MIMEMultipart("alternative")
       message["Subject"] = "MigrationFX Activation"
-      message["Subject"] = subject if subject != None else "MigrationFX Activation" 
+      message["Subject"] = subject if subject is not None else "MigrationFX Activation" 
       message["From"] = self.sender_email
       message["To"] = email
       message["Cc"] = copy
@@ -64,9 +64,8 @@ class SmtpClient:
       context = ssl.create_default_context()
       with smtplib.SMTP_SSL(self.smtp_server, self.port, context=context) as server:
         server.login(self.sender_email, self.password)
-        # print('Sending Email: Name - {0} {1}, Code - {2}, expiry - {3}, Mail - {4}'.format(fname,lname,code,expiry,email))
         if self.sender_email and email:
             server.sendmail(self.sender_email, email, message.as_string())
         else:
-            print("\033[1;31;40m Unbale to send mail, Invalid email ({0}) or Incoreect SMTP Setting.".format(email))
+            print("\033[1;31;40m Unbale to send mail, Invalid email ({0}) or Incorrect SMTP Setting.".format(email))
 
