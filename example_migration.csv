@@ -1,2 +1,4 @@
 oldphone,newphone,newmodel,newprotocol,createactivationcode
-SEP797079701111,,Cisco 8865,SIP,False
+SEP123321456654,,Cisco 8865,SIP,True
+SEP123321456660,,Cisco 8865,SIP,True
+SEP123321456655,,Cisco 8845,SIP,True

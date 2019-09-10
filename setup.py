@@ -8,6 +8,9 @@ requires = [
     'python-dateutil',
 	'tctc-odata',
 	'six',
+    'pystache',
+    'pyqrcode',
+    'pypng'
 ]
 
 # support for enums from pypi when on older python

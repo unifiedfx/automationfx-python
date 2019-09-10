@@ -1,0 +1,8 @@
+{
+    "sender_email": "myemail@gmail.com",
+    "password": "password",
+    "smtp_server": "smtp.gmail.com",
+    "port": 465,
+    "text_template": "template.txt",
+    "html_template": "template.html"
+}
