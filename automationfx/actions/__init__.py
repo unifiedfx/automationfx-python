@@ -88,6 +88,20 @@ def sendMessage(message, destination):
 def sendRawMessage(message, source):
     return getClient().post("messages/send", data=message, params={'filter':source})
 
+def migrate(oldphone, newphone, newmodel, newprotolcol = "SIP", enableactivationcode = False):
+    """
+    Initiate a Phone Migration
+    ============
+    Intiates a phone migration in CUCM 
+    - oldphone(string) : Name of the old phone to migrate from (required).
+    - newphone(string) : Name of the new phone, if not provided a random name will be generated.
+    - newmodel(string) : New phone Model, This is not required if new name (newphone) is provided and the new phone exist in CUCM with the correct model. 
+    - newprotocol(string) - New phones protocol (if not provided defaults to SIP)
+    - enableactivationcode(boolean) - Generates an Activation Code. Requires UCM 12.5+ and Device Default 'Onboarding Method' for model should be configured to 'Activation Code'     
+    """
+    model = {'oldName': oldphone, 'newName': newphone, 'newModel': newmodel, 'newProtocol': newprotolcol, 'createActivationCode' :enableactivationcode}
+    return getClient().post("migrate", data=model)
+
 def listResource(resource, search=None, fields=None):
     params = {'detailed':'true'}
     if search is not None:

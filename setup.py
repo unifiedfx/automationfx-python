@@ -1,13 +1,17 @@
 import sys
 from setuptools import setup, find_packages
 
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 
 requires = [
     'requests>=2.0',
     'python-dateutil',
 	'tctc-odata',
 	'six',
+    'pystache',
+    'pyqrcode',
+    'pypng',
+    'colorama'
 ]
 
 # support for enums from pypi when on older python

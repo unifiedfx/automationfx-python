@@ -1,0 +1,4 @@
+Hi {{fname}},
+    Please enter or scan the following code when prompted on your device {{code}}.
+    This activation code expires on {{expiry}}.
+    Sent to {{email}}.
