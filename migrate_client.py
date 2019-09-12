@@ -45,14 +45,14 @@ class MigrateClient:
                 self.rows_dict = json.loads(json.dumps(source))
                 return True
 
-    def migrate(self, input_file='example_migration.csv', process_all_records=False):
+    def migrate(self, input_file='example_migration.csv', ignore_status=False):
         result = self.read_inputfile(input_file)
         if result and self.rows_dict is not None and len(self.rows_dict) > 0:
             with open(self.output_filename, 'w', newline='') as outputFile:
                 writer = csv.DictWriter(outputFile, fieldnames=self.output_headers)
                 writer.writeheader()
             for row in self.rows_dict:
-                if process_all_records:
+                if ignore_status:
                     self.process_row(row)
                 else:
                     if row['status'] is None or not row['status'].startswith("Success"):
