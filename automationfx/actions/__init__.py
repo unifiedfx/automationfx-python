@@ -13,11 +13,11 @@ def getClient():
         api = Client()
     return api
 
-def call(source, number):
+def call(source, number,line='1'):
     """Call number form source"""
     name = source.Name
     print(("Calling {0} from {1}".format(number, name)))
-    return getClient().post("cti/calls/{0}/{1}".format(name, number), None)
+    return getClient().post("cti/calls/{0}/{1}".format(name, number), None, {'address': line})
 
 def answer(source):
     print(("Answering call on {0}".format(source.Name)))
