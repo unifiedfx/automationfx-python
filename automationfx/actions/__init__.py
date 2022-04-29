@@ -27,6 +27,23 @@ def drop(source):
     print(("Dropping call on {0}".format(source.Name)))
     return operation(source,'Drop')
 
+def callInfo(source):
+    print(("Getting call info on {0}".format(source.Name)))
+    return getClient().get("cti/calls/legacy/{0}".format(source.Name))
+
+def startMonitor(source, supervisor):
+    """Start a Call Monitoring session on source phone and send media to supervisor phone"""
+    name = source.Name
+    supervisorName = supervisor.Name
+    print(("Monitoring call on {0} from {1}".format(name, supervisorName)))
+    return getClient().post("cti/calls/{0}/monitor/{1}".format(name, supervisorName), None)
+
+def stopMonitor(source):
+    """Stop the Call Monitoring Session on source phone"""
+    name = source.Name
+    print(("Stopping call monitoring session on {0}".format(name)))
+    return getClient().delete("cti/calls/{0}/monitor".format(name), None)
+
 def hold(source):
     """Place the active call on the source phone on hold"""
     print(("Holding call on {0}".format(source.Name)))
@@ -36,13 +53,22 @@ def unhold(source):
     print(("Unholding call on {0}".format(source.Name)))
     return operation(source,'UnHold')
 
-def transfer(source):
-    print(("Consult Transfer on {0}".format(source.Name)))
-    return operation(source,'Transfer')
+def transfer(source, number = None):
+    if number is not None:
+        print(("Direct Transfer from {0} to {1}".format(source.Name, number)))
+        return getClient().post("cti/calls/{0}/transfer/{1}".format(source.Name,number), None)
+    else:
+        print(("Consult Transfer on {0}".format(source.Name)))
+        return operation(source,'Transfer')
 
-def conference(source):
-    print(("Consult Conference on {0}".format(source.Name)))
-    return operation(source,'Conference')
+def conference(source, number= None):
+    if number is not None:
+        print(("Direct Conference from {0} to {1} ".format(source.Name, number)))
+        return getClient().post("cti/calls/{0}/conference/{1}".format(source.Name,number), None)
+    else:
+        print(("Consult Conference on {0}".format(source.Name)))
+        return operation(source,'Conference')
+        
 
 def offhook(source):
     print(("Offhook on {0}".format(source.Name)))
